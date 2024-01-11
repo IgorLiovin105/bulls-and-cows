@@ -1,17 +1,19 @@
 package org.example;
 
-public class Context {
-	private State state;
+import org.example.State.GameState;
+
+public class GameContext {
+	private GameState state;
 	
-	public Context(State state) {
+	public GameContext(GameState state) {
 		this.state = state;
 	}
 	
-	public void setState(State state) {
+	public void setState(GameState state) {
 		this.state = state;
 	}
 	
 	public void doAction() {
-		state.doAction();
+		this.state.doAction(this);
 	}
 }

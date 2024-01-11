@@ -1,7 +1,6 @@
-package org.example.Actions;
+package org.example.State;
 
 import org.example.GameContext;
-import org.example.GameState;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

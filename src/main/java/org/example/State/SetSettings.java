@@ -1,8 +1,7 @@
-package org.example.Actions;
+package org.example.State;
 
 import org.example.GameContext;
-import org.example.GameState;
-import org.example.Settings.Settings;
+import org.example.Settings;
 
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
@@ -15,7 +14,10 @@ public class SetSettings implements GameState {
 		int length = setLength();
 		int[] secret = generateSecret(isRepeat, length);
 		
-		Settings settings = new Settings(secret, length, isRepeat);
+		Settings settings = Settings.getInstance();
+		settings.save(secret, length, isRepeat);
+		context.setState(new PlayGame());
+		context.doAction();
 	}
 	
 	public boolean setIsRepeat() {
@@ -88,5 +90,4 @@ public class SetSettings implements GameState {
 		
 		return secret;
 	}
-	
 }

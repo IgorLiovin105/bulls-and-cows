@@ -1,4 +1,4 @@
-package org.example.Settings;
+package org.example;
 
 import java.util.Arrays;
 
