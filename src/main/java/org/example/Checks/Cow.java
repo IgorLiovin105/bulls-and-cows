@@ -6,22 +6,14 @@ import org.example.Settings;
 import java.util.HashSet;
 
 public class Cow {
-	private int length;
-	private int[] secret;
-	private int[] guess;
-	
-	public Cow() {
-		guess = GameFileFacade.readFromFile();
-		length = Settings.getInstance().getLength();
-		secret = Settings.getInstance().getSecret();
-	}
-	
-	public int countCows() {
+	public int countCows(int[] secret, int length) {
+		int[] guess = GameFileFacade.readFromFile();
 		int countOfCows = 0;
+		
 		HashSet<Integer> foundBullPositions = new HashSet<>();
 		HashSet<Integer> foundCowPositions = new HashSet<>();
 		
-		for (int i = 0; i < guess.length; i++) {
+		for (int i = 0; i < length; i++) {
 			if (guess[i] == secret[i]) {
 				foundBullPositions.add(i);
 			}
@@ -29,7 +21,7 @@ public class Cow {
 		
 		for (int i = 0; i < guess.length; i++) {
 			if (!foundBullPositions.contains(i)) {
-				for (int j = 0; j < secret.length; j++) {
+				for (int j = 0; j < length; j++) {
 					if (guess[i] == secret[j] && !foundBullPositions.contains(j) && !foundCowPositions.contains(j)) {
 						countOfCows++;
 						foundCowPositions.add(j);
@@ -41,3 +33,4 @@ public class Cow {
 		return countOfCows;
 	}
 }
+

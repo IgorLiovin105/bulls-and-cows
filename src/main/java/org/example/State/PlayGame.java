@@ -13,28 +13,21 @@ public class PlayGame implements GameState {
 	@Override
 	public void doAction(GameContext context) {
 		Settings settings = Settings.getInstance();
-		
-		int length = settings.getLength();
-		boolean isRepeat = settings.getIsRepeat();
-		
+		int length = settings.length;
+		boolean isRepeat = settings.isRepeat;
 		int[] guess = play(length, isRepeat);
-		
 		GameFileFacade.writeToFile(guess);
-		context.setState(new ShowResult());
-		context.doAction();
+		context.setState("ShowResult");
 	}
 	
 	private int[] play(int length, boolean isRepeat) {
 		String temp;
 		Scanner in = new Scanner(System.in);
-		
 		while (true) {
 			try {
 				System.out.print("Введите ваш вариант числа: ");
 				temp = in.nextLine();
-				
 				temp = temp.replaceAll("[^\\d]", "");
-				
 				if (length != temp.length()) {
 					System.out.println("Неверное число. Пожалуйста, введите число длиной " + length + " и повторите попытку");
 					continue;
@@ -62,7 +55,6 @@ public class PlayGame implements GameState {
 	
 	private boolean hasRepeatingDigits(String number) {
 		Set<Character> uniqueDigits = new HashSet<>();
-		
 		for (char digit : number.toCharArray()) {
 			if (!uniqueDigits.add(digit)) {
 				return true;

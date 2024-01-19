@@ -10,8 +10,7 @@ public class RulesMenu implements GameState {
 			+ "После каждого ввода числа, компьютер выводит количество быков и коров в нем\n"
 			+ "Коровой называется цифра, угаданная без совпадения позиции,\n"
 			+ "а быком — цифра, угаданная с совпадением позиции\n\n");
-		
-		context.setState(new MainMenu());
-		context.doAction();
+		context.setState("MainMenu");
 	}
 }
+

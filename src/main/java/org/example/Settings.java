@@ -4,12 +4,12 @@ import java.util.Arrays;
 
 public class Settings {
 	private static Settings settings;
-	private int[] secret;
-	private int length;
-	private boolean isRepeat;
+	public int[] secret;
+	public int length;
+	public boolean isRepeat;
 	
 	public static Settings getInstance() {
-		if(settings == null) {
+		if (settings == null) {
 			settings = new Settings();
 		}
 		
@@ -21,21 +21,5 @@ public class Settings {
 		this.length = length;
 		this.isRepeat = isRepeat;
 	}
-	
-	public String showSettings() {
-		String res = "Загаданное число: " + Arrays.toString(this.secret) + "; Длина числа: " + this.length + "; Повторяющиеся числа: " + this.isRepeat + ";";
-		System.out.println(res);
-		return res;
-	}
-	public int[] getSecret() {
-		return this.secret;
-	}
-	
-	public int getLength() {
-		return this.length;
-	}
-	
-	public boolean getIsRepeat() {
-		return this.isRepeat;
-	}
 }
+
